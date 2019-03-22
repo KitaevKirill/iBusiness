@@ -28,6 +28,10 @@ Route::post('/adminpanel/quiz{quiz}/question/create', 'AdminQuestionController@s
 Route::patch('/adminpanel/quiz{quiz}/question{id}', 'AdminQuestionController@patch');
 Route::delete('/adminpanel/quiz{quiz}/question{id}', 'AdminQuestionController@delete');
 
+Route::get('/adminpanel/quiz/create', 'QuestionController@create');
+Route::post('/adminpanel/quiz/create', 'QuestionController@store');
+Route::delete('/adminpanel/quiz{id}/delete', 'QuestionController@destroy');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

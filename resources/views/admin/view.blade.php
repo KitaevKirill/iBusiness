@@ -15,6 +15,7 @@
                             @csrf
                             {{method_field('patch')}}
                             <input type="text" name="question" value="{{$question->question}}" style="width: 85%">
+                            <input type="checkbox" name="important" @if($question->important == 1) checked @endif>
 
                             <input type="submit"
                                    value="Изменить"  style="float: right"></form>

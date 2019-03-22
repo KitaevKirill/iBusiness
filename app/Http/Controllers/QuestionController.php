@@ -30,7 +30,7 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.quizCreate');
     }
 
     /**
@@ -41,7 +41,10 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Quiz::create($request->all());
+//$quiz = new Quiz();
+
+        return redirect('/adminpanel');
     }
 
     /**
@@ -88,6 +91,8 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Quiz::find($id)->delete();
+
+        return back();
     }
 }

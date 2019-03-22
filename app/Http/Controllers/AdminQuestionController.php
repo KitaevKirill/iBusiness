@@ -62,6 +62,10 @@ class AdminQuestionController extends Controller
 
         $question->question = request('question');
 
+        if(request('important') == 'on'){
+            $question->important = '1';
+        } else {$question->important = '0';}
+
         $question->save();
 
         return back();

@@ -49,11 +49,9 @@ class AdminController extends Controller
 
         $quizzes = Quiz::all();
 
-        $countOfQuestion = $quizzes->count();
+        $lastID = $quizzes->last()->id;
 
-//        return $quizzes->find(1)->id;
-
-        return view('admin.access', ['quizzes' => $quizzes, 'countOfQuestion' => $countOfQuestion, 'accesses' => $accesses, 'id' => $id]);
+        return view('admin.access', ['quizzes' => $quizzes, 'lastID' => $lastID, 'accesses' => $accesses, 'id' => $id]);
     }
 
     public function changeAccess(Request $request, $id)
