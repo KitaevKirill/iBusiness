@@ -2,7 +2,7 @@
 
 @section('content')
     <link href="{{ asset('css/my.css') }}" rel="stylesheet">
-    <script src="{{ asset('js/my.js') }}" defer></script>
+
     <div class="container">
         <nav aria-label="...">
             <ul class="pagination">
@@ -56,17 +56,18 @@
                         <li id="li{{$important->number}}"
                             @if ($answers->where('number', '=', $important->number)->first()->value == "0") style="display:none">
                             @elseif ($answers->where('number', '=', $important->number)->first()->value == "yes")
-                                class="good">
+                                class="good nameplate">
                                 <div>C вопросом {{$important->number}} всё в порядке</div>
-                            @else class="bad">
+                            @else class="bad nameplate">
                             <div>Вам надо поработать над вопросом {{$important->number}}</div>
                             @endif
-                            <div id="shadow1" class="hover" style="">Здесь подсказка {{$important->number}}</div>
+                            <div id="shadow{{$important->number}}" class="hover" style="">Здесь подсказка {{$important->number}}</div>
                         </li>
                     @endisset
                 @endforeach
             </ul>
         </div>
     </div>
+    <script src="{{ asset('js/my.js') }}" defer></script>
 
 @endsection

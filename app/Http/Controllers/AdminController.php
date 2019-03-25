@@ -65,4 +65,30 @@ class AdminController extends Controller
 
         return back();
     }
+
+    public function fullaccess($id)
+    {
+        $user = User::FindOrFail($id);
+
+        if ($user->access == '1') {
+            $user->access = '0';
+            $user->save();
+        } else {
+            $user->access = '1';
+            $user->save();
+        }
+
+        return back();
+    }
+
+    public function delete($id)
+    {
+        $user = User::FindOrFail($id);
+
+        $user->quizzes()->detach();
+
+        $user->delete();
+
+        return back();
+    }
 }

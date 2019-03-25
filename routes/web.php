@@ -13,14 +13,16 @@
 
 Route::get('/', 'HomeController@main');
 
-Route::get('/quiz{quiz}/page{page}', 'QuizController@index')->where('page', '[0-9]+')->where('quiz', '[1-3]');
-Route::post('/quiz{quiz}/page{page}', 'QuizController@post')->where('page', '[0-9]+')->where('quiz', '[1-3]');
+Route::get('/quiz{quiz}/page{page}', 'QuizController@index')->where('page', '[0-9]+')->where('quiz', '[0-9]+');
+Route::post('/quiz{quiz}/page{page}', 'QuizController@post')->where('page', '[0-9]+')->where('quiz', '[0-9]+');
 Route::get('/quiz{quiz}/results', 'QuizController@results');
 Route::get('/adminpanel', 'AdminController@index');
 Route::get('/adminpanel/{id}', 'AdminController@view')->where('id', '[0-9]+');
 Route::get('/adminpanel/clients', 'AdminController@clients');
 Route::get('/adminpanel/clients/{id}', 'AdminController@access');
 Route::post('/adminpanel/clients/{id}', 'AdminController@changeAccess');
+Route::get('/adminpanel/clients/{id}/fullaccess', 'AdminController@fullaccess');
+Route::get('/adminpanel/clients/{id}/delete', 'AdminController@delete');
 
 Route::get('/adminpanel/quiz{quiz}/question', 'AdminQuestionController@index');
 Route::get('/adminpanel/quiz{quiz}/question/create', 'AdminQuestionController@create');
@@ -35,5 +37,8 @@ Route::delete('/adminpanel/quiz{id}/delete', 'QuestionController@destroy');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/youblocked', function () {
+    return view('services.blocked');
+});
 
 //Route::resource('/adminpanel/question', 'QuestionController');

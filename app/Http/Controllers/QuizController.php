@@ -14,7 +14,7 @@ class QuizController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'accessed']);
     }
 
     /**
@@ -25,12 +25,17 @@ class QuizController extends Controller
      */
     public function index($quiz, $page)
     {
-        $answers = Answer::where('user_id', Auth::user()->id)->where('quiz_id', $quiz)->get();
         $question = Question::where('quiz_id', $quiz)->get();
+        if ($question->count() == 0) {
+            return view('absent');
+        };
+        $answers = Answer::where('user_id', Auth::user()->id)->where('quiz_id', $quiz)->get();
         $countOfQuestion = $question->count();
         $countOfPage = ceil($countOfQuestion / $this->questionsOnPage);
         $questionOnLastPage = $countOfQuestion % $this->questionsOnPage;
-        if ($questionOnLastPage == 0) {$questionOnLastPage = $this->questionsOnPage;}
+        if ($questionOnLastPage == 0) {
+            $questionOnLastPage = $this->questionsOnPage;
+        }
         $from = 1 + ($page - 1) * $this->questionsOnPage;
 
         if ($page == $countOfPage) {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Question;
 use App\Quiz;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class QuestionController extends Controller
 {
@@ -42,9 +43,10 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         Quiz::create($request->all());
-//$quiz = new Quiz();
 
-        return redirect('/adminpanel');
+        $id = Quiz::all()->last()->id;
+
+        return redirect('/adminpanel/quiz'.$id.'/question');
     }
 
     /**
@@ -91,7 +93,11 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        Quiz::find($id)->delete();
+        $quiz = Quiz::find($id);
+
+        $quiz->users()->detach();
+
+        $quiz->delete();
 
         return back();
     }

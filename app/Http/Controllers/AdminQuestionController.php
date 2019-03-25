@@ -37,7 +37,7 @@ class AdminQuestionController extends Controller
         $newQuestion->quiz_id = $quiz;
         $newQuestion->number = $request->number;
         $newQuestion->question = $request->question;
-        if ($request->important = 'on') {
+        if ($request->important == 'on') {
             $newQuestion->important = '1';
         }
 
