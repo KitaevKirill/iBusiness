@@ -119,33 +119,11 @@ class QuizController extends Controller
         return view('result', ['answers' => $answers, 'questions' => $questions, 'problemAnswersId' => $problemAnswersId, 'quiz' => $quiz]);
     }
 
-//    public function resultsOLD()
-//    {
-//        $practice = Practice::where('id', Auth::user()->id)->first();
-//
-//        for ($i = 1; $i <= $this->numberOfQuestion; ++$i) {
-//
-//            $value = 'value_' . $i;
-//            $answer = 'answer_' . $i;
-//            $tmp[$answer] = $practice->{$answer};
-//            $tmp[$value] = $practice->{$value};
-//            $arr = $tmp;
-//        }
-//
-//        $arr = array_filter($arr, function ($var) {
-//            return (($var == null) || ($var == '0'));
-//        });
-//
-//        $arr = array_keys($arr);
-//
-//        foreach ($arr as $str) {
-//            $arrNumeric[] = preg_replace("/[^0-9]/", '', $str);
-//        }
-//
-//        $arrNotAnswered = array_unique($arrNumeric);
-//
-//        $question = Question::all();
-//
-//        return view('result', ['practice' => $practice, 'question' => $question, 'page' => 3, 'notAnswered' => $arrNotAnswered]);
-//    }
+    public function sum(){
+
+        $marketings = Question::where('quiz_id', '6')->get();
+        $understanding = Question::where('quiz_id', '7')->get();
+
+        return view('main.sum', ['marketings' => $marketings, 'understanding' => $understanding]);
+    }
 }

@@ -21,13 +21,46 @@ class CreateQuizzesTable extends Migration
 
         DB::table('quizzes')->insert(array(
             array(
-                'title' => 'Название опроса 1',
+                'title' => 'Отдел кадров',
             ),
             array(
-                'title' => 'Название опроса 2',
+                'title' => 'Администрирование',
             ),
             array(
-                'title' => 'Название опроса 3',
+                'title' => 'Построение',
+            ),
+            array(
+                'title' => 'Персонал',
+            ),
+            array(
+                'title' => 'Коммуникации',
+            ),
+            array(
+                'title' => 'Маркетинг',
+            ),
+            array(
+                'title' => 'Понимание',
+            ),
+            array(
+                'title' => 'Продажи',
+            ),
+            array(
+                'title' => 'Финансы',
+            ),
+            array(
+                'title' => 'Производство',
+            ),
+            array(
+                'title' => 'Торговля',
+            ),
+            array(
+                'title' => 'Услуги',
+            ),
+            array(
+                'title' => 'Пиар',
+            ),
+            array(
+                'title' => 'Качество и совершенствование',
             ),
         ));
     }

@@ -41,4 +41,6 @@ Route::get('/youblocked', function () {
     return view('services.blocked');
 });
 
+Route::get('/sum', 'QuizController@sum');
+
 //Route::resource('/adminpanel/question', 'QuestionController');
